@@ -16,6 +16,8 @@ namespace management_api.Data
         }
         
         public DbSet<Position> Positions { get; set; }
+        
+        public DbSet<Department> Departments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,6 +27,16 @@ namespace management_api.Data
 
                 entity.Property(e => e.Title)
                     .HasColumnName("Title")
+                    .HasColumnType("nchar(30)")
+                    .IsUnicode();
+            });
+            
+            modelBuilder.Entity<Department>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("Id");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("Name")
                     .HasColumnType("nchar(30)")
                     .IsUnicode();
             });
