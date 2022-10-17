@@ -20,6 +20,8 @@ namespace management_api.Data
         public DbSet<Department> Departments { get; set; }
         
         public DbSet<Rate> Rates { get; set; }
+        
+        public DbSet<Schedule> Schedules { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -52,6 +54,19 @@ namespace management_api.Data
                 entity.Property(e => e.StartDate).HasColumnName("StartDate");
 
                 entity.Property(e => e.Amount).HasColumnName("Amount");
+            });
+            
+            modelBuilder.Entity<Schedule>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("Id");
+                
+                entity.Property(e => e.DepartmentId).HasColumnName("DepartmentId");
+
+                entity.Property(e => e.PositionId).HasColumnName("PositionId");
+                
+                entity.Property(e => e.StartDate).HasColumnName("StartDate");
+
+                entity.Property(e => e.Quantity).HasColumnName("Quantity");
             });
         }
     }
