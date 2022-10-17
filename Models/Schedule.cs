@@ -6,7 +6,11 @@
         
         public int DepartmentId { get; set; }
         
+        public Department? Department { get; set; }
+        
         public int PositionId { get; set; }
+        
+        public Position? Position { get; set; }
         
         public DateTime StartDate { get; set; }
         

@@ -19,7 +19,9 @@ namespace management_api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Rate>>> GetAll()
         {
-            return await _context.Rates.ToListAsync();
+            return await _context.Rates
+                .Include(r => r.Position)
+                .ToListAsync();
         }
 
         [HttpGet("between")]
@@ -28,6 +30,7 @@ namespace management_api.Controllers
             return await _context.Rates
                 .Where(r => (r.StartDate >= startDate)
                     && (r.StartDate <= endDate))
+                .Include(r => r.Position)
                 .ToListAsync();
         }
 
@@ -35,6 +38,7 @@ namespace management_api.Controllers
         public async Task<ActionResult<Rate>> GetById(int id)
         {
             var rate = await _context.Rates
+                .Include(r => r.Position)
                 .FirstOrDefaultAsync(r => r.Id == id);
 
             if (rate == null) return NotFound();

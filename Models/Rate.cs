@@ -6,6 +6,8 @@
         
         public int PositionId { get; set; }
         
+        public Position? Position { get; set; }
+        
         public DateTime StartDate { get; set; }
         
         public int Amount { get; set; }

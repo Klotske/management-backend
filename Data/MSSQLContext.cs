@@ -54,6 +54,10 @@ namespace management_api.Data
                 entity.Property(e => e.StartDate).HasColumnName("StartDate");
 
                 entity.Property(e => e.Amount).HasColumnName("Amount");
+
+                entity.HasOne(e => e.Position)
+                    .WithMany()
+                    .HasForeignKey(e => e.PositionId);
             });
             
             modelBuilder.Entity<Schedule>(entity =>
@@ -67,6 +71,14 @@ namespace management_api.Data
                 entity.Property(e => e.StartDate).HasColumnName("StartDate");
 
                 entity.Property(e => e.Quantity).HasColumnName("Quantity");
+
+                entity.HasOne(e => e.Department)
+                    .WithMany()
+                    .HasForeignKey(e => e.DepartmentId);
+
+                entity.HasOne(e => e.Position)
+                    .WithMany()
+                    .HasForeignKey(e => e.PositionId);
             });
         }
     }

@@ -19,13 +19,18 @@ namespace management_api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Schedule>>> GetAll()
         {
-            return await _context.Schedules.ToListAsync();
+            return await _context.Schedules
+                .Include(s => s.Department)
+                .Include(s => s.Position)
+                .ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<Schedule>> GetById(int id)
         {
             var schedule = await _context.Schedules
+                .Include(s => s.Department)
+                .Include(s => s.Position)
                 .FirstOrDefaultAsync(s => s.Id == id);
 
             if (schedule == null) return NotFound();
