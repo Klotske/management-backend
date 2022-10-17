@@ -18,6 +18,8 @@ namespace management_api.Data
         public DbSet<Position> Positions { get; set; }
         
         public DbSet<Department> Departments { get; set; }
+        
+        public DbSet<Rate> Rates { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,6 +41,17 @@ namespace management_api.Data
                     .HasColumnName("Name")
                     .HasColumnType("nchar(30)")
                     .IsUnicode();
+            });
+
+            modelBuilder.Entity<Rate>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("Id");
+
+                entity.Property(e => e.PositionId).HasColumnName("PositionId");
+                
+                entity.Property(e => e.StartDate).HasColumnName("StartDate");
+
+                entity.Property(e => e.Amount).HasColumnName("Amount");
             });
         }
     }
