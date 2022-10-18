@@ -60,6 +60,23 @@ namespace management_api.Data
                     .HasForeignKey(e => e.PositionId);
             });
             
+            modelBuilder.Entity<IntervalRate>(entity =>
+            {
+                entity.Property(e => e.PositionId).HasColumnName("PositionId");
+                
+                entity.Property(e => e.StartDate)
+                    .HasColumnName("StartDate");
+                
+                entity.Property(e => e.EndDate)
+                    .HasColumnName("EndDate");
+
+                entity.Property(e => e.Amount).HasColumnName("Amount");
+
+                entity.HasOne(e => e.Position)
+                    .WithMany()
+                    .HasForeignKey(e => e.PositionId);
+            });
+            
             modelBuilder.Entity<Schedule>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("Id");
