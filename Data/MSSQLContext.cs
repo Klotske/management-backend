@@ -21,6 +21,8 @@ namespace management_api.Data
         
         public DbSet<Rate> Rates { get; set; }
         
+        public DbSet<IntervalRate> IntervalRates { get; set; }
+        
         public DbSet<Schedule> Schedules { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -75,6 +77,8 @@ namespace management_api.Data
                 entity.HasOne(e => e.Position)
                     .WithMany()
                     .HasForeignKey(e => e.PositionId);
+
+                entity.HasNoKey();
             });
             
             modelBuilder.Entity<Schedule>(entity =>
