@@ -16,4 +16,21 @@
         
         public int Quantity { get; set; }
     }
+
+    public class IntervalSchedule
+    {
+        public int DepartmentId { get; set; }
+
+        public Department? Department { get; set; }
+
+        public int PositionId { get; set; }
+
+        public Position? Position { get; set; }
+
+        public DateTime StartDate { get; set; }
+        
+        public DateTime EndDate { get; set; }
+
+        public int Quantity { get; set; }
+    }
 }

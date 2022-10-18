@@ -101,6 +101,31 @@ namespace management_api.Data
                     .WithMany()
                     .HasForeignKey(e => e.PositionId);
             });
+            
+            modelBuilder.Entity<IntervalSchedule>(entity =>
+            {
+                entity.Property(e => e.DepartmentId).HasColumnName("DepartmentId");
+
+                entity.Property(e => e.PositionId).HasColumnName("PositionId");
+
+                entity.Property(e => e.StartDate)
+                    .HasColumnName("StartDate");
+
+                entity.Property(e => e.EndDate)
+                    .HasColumnName("EndDate");
+
+                entity.Property(e => e.Quantity).HasColumnName("Quantity");
+
+                entity.HasOne(e => e.Department)
+                    .WithMany()
+                    .HasForeignKey(e => e.DepartmentId);
+
+                entity.HasOne(e => e.Position)
+                    .WithMany()
+                    .HasForeignKey(e => e.PositionId);
+
+                entity.HasNoKey();
+            });
         }
     }
 }
