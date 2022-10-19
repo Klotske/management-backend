@@ -25,6 +25,7 @@ namespace management_api.Data
         
         public DbSet<Schedule> Schedules { get; set; }
 
+        public DbSet<IntervalSchedule> IntervalSchedules { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Position>(entity =>
