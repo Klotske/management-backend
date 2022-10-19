@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace management_api.Controllers
 {
+    [Route("api/report")]
+    [ApiController]
     public class ReportController : Controller
     {
         private readonly MSSQLContext _context;
